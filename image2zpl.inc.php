@@ -172,13 +172,13 @@ function uintvar_shift(&$data) {
 		if ($index >= 4) {
 		    return false;
 		}
-        $r = ($r << 7) | (ord($data[$index]) & 0x7f);
-        $index++;
-    }
+		$r = ($r << 7) | (ord($data[$index]) & 0x7f);
+		$index++;
+	}
 
-    $r = ($r << 7) | (ord($data[$index]) & 0x7f);
+	$r = ($r << 7) | (ord($data[$index]) & 0x7f);
 
-    $data = substr($data, $index + 1);
-    return $r;
+	$data = substr($data, $index + 1);
+	return $r;
 
 }
