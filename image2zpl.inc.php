@@ -48,9 +48,8 @@ function wbmp_to_zpl($in, $name='') {
 	$w = uintvar_shift($wbmp);
 	$h = uintvar_shift($wbmp);
 
-	$bitmap = ~$wbmp; // Black is white, white is black
-
-	$total_bytes = strlen($bitmap);
+	$bitmap = str_split(~$wbmp); // Black is white, white is black
+	$total_bytes = count($bitmap);
 	$bytes_per_line = ceil($w/8);
 
 	if($w % 8 > 0) {
@@ -71,6 +70,7 @@ function wbmp_to_zpl($in, $name='') {
 	}
 
 
+	$bitmap = implode("", $bitmap);
 	$uncompressed = strtoupper(bin2hex($bitmap));
 	$compressed = preg_replace_callback('/(.)\1{2,399}/', "zpl_rle_compress_helper", $uncompressed); 
 
