@@ -72,7 +72,7 @@ function wbmp_to_zpl($in, $name='') {
 
 
 	$uncompressed = strtoupper(bin2hex($bitmap));
-	$compressed = preg_replace_callback('/(.)\1{2,399}/', "zpl_rle_compress_helper", $uncompressed); 
+	$compressed = preg_replace_callback('/(.)\1{2,}/', "zpl_rle_compress_helper", $uncompressed); 
 
 	$name = preg_replace('/[^A-z0-9]/', '', $name);
 	if(strlen($name) > 8) $name = substr($name, 0, 8);
